@@ -13,6 +13,7 @@ function setCORSHeaders(response: NextResponse) {
 export async function GET(req: Request) {
     const url = new URL(req.url);
     const domain = url.searchParams.get('domain');
+    
 
     // Handle CORS preflight request
     if (req.method === 'OPTIONS') {

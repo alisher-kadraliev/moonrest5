@@ -1,4 +1,8 @@
 (function () {
+    const link = document.createElements("link")
+    link.rel = "stylesheet"
+    link.href = "/popup.css"
+    document.head.appendChild(link)
     fetch('https://moonrest5.vercel.app/api/get-template?domain=' + window.location.hostname)
         .then(response => response.json())
         .then(template => {
@@ -8,9 +12,10 @@
 
             const popupHTML = `
                 <div class="popup-custom">
-                    <div class="content moon-custom">
+                    <div class="content-custom moon-custom">
                         <span class="close-custom">&times;</span>
                         <h2>${template[0].title}</h2>
+                        <h2>${template[0].domain}</h2>
                     </div>
                 </div>
             `;
