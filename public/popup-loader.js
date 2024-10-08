@@ -7,17 +7,17 @@
             document.body.appendChild(container);
 
             const popupHTML = `
-                <div class="popup">
-                    <div class="content">
-                        <span class="close">&times;</span>
-                        <h2>${template.title}</h2>
+                <div class="popup-custom">
+                    <div class="content moon-custom">
+                        <span class="close-custom">&times;</span>
+                        <h2>${template[0].title}</h2>
                     </div>
                 </div>
             `;
 
             container.innerHTML = popupHTML;
 
-            document.querySelector('.popup .close').onclick = function () {
+            document.querySelector('.popup-custom .close-custom').onclick = function () {
                 container.remove();
             };
         })
