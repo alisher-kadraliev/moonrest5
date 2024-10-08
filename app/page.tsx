@@ -1,12 +1,12 @@
-import PostsPage from "./posts";
-import Postists from "./postists";
+import CreateTemplate from "./create-template";
 
 export default function Home() {
 
   return (
     <div>
-      <Postists />
-      <PostsPage />
+      {/* <Postists />
+      <PostsPage /> */}
+      <CreateTemplate />
  </div>
   );
 }

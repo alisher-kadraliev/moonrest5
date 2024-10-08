@@ -17,3 +17,9 @@ model Post {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
 }
+
+model PopupTemplate {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  domain    String
+  title     String
+}
