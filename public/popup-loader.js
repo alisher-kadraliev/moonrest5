@@ -1,5 +1,5 @@
 (function () {
-    const link = document.createElements("link")
+    const link = document.createElement("link")
     link.rel = "stylesheet"
     link.href = "/popup.css"
     document.head.appendChild(link)
