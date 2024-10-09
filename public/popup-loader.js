@@ -4,7 +4,7 @@
     link.href = "https://moonrest5.vercel.app/popup.css"
     document.head.appendChild(link)
 
-    fetch('https://moonrest5.vercel.app/api/get-template?domain=' + window.location.hostname)
+    fetch('https://moonrest5.vercel.app/api/templateapi/get-template?domain=' + window.location.hostname)
         .then(response => response.json())
         .then(campaign => {
             const container = document.createElement('div');
