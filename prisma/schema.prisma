@@ -14,12 +14,49 @@ datasource db {
 }
 
 model Post {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
 }
 
-model PopupTemplate {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  domain    String
-  title     String
+model Domain {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  domain String
+  campaigns Campaign[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Campaign {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  status   Boolean
+  domainId String  @db.ObjectId
+  campaignAction CampaignAction[]
+  domain         Domain           @relation(fields: [domainId], references: [id])
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+}
+
+model CampaignAction {
+  id          String             @id @default(auto()) @map("_id") @db.ObjectId
+  campaignId  String             @db.ObjectId
+  title       String
+  description String
+  imageUrl    String
+  buttonText  String
+  buttonUrl   String
+  bgColor     String
+  textColor   String
+  type        CampaignActionType
+  campaign    Campaign           @relation(fields: [campaignId], references: [id])
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+}
+
+enum CampaignActionType {
+  MODAL
+  POPUP
+  GAMIFICATION
 }

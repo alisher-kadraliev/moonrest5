@@ -9,13 +9,11 @@ function setCORSHeaders(response: NextResponse) {
     response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 }
 
-// Handle the GET request
 export async function GET(req: Request) {
     const url = new URL(req.url);
     const domain = url.searchParams.get('domain');
     
 
-    // Handle CORS preflight request
     if (req.method === 'OPTIONS') {
         const response = new NextResponse(null, { status: 204 });
         setCORSHeaders(response);
@@ -31,12 +29,12 @@ export async function GET(req: Request) {
     try {
         await connectMongo();
 
-        const template = await prisma.popupTemplate.findMany({
+        const template = await prisma.domain.findMany({
             where: { domain: domain }
         });
 
         if (!template || template.length === 0) {
-            const response = new NextResponse(JSON.stringify({ error: 'Template not found' }), { status: 404 });
+            const response = new NextResponse(JSON.stringify({ error: 'Domain not found' }), { status: 404 });
             setCORSHeaders(response);
             return response;
         }

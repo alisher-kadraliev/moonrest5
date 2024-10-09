@@ -8,7 +8,7 @@ export default function CreateTemplate() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const response = await fetch(`/api/save-template`, {
+        const response = await fetch(`/api/templateapi/save-template`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -3,9 +3,10 @@
     link.rel = "stylesheet"
     link.href = "https://moonrest5.vercel.app/popup.css"
     document.head.appendChild(link)
+
     fetch('https://moonrest5.vercel.app/api/get-template?domain=' + window.location.hostname)
         .then(response => response.json())
-        .then(template => {
+        .then(campaign => {
             const container = document.createElement('div');
             container.id = 'popup-root';
             document.body.appendChild(container);
@@ -14,8 +15,7 @@
                 <div class="popup-custom">
                     <div class="content-custom moon-custom">
                         <span class="close-custom">&times;</span>
-                        <h2>${template[0].title}</h2>
-                        <div>${template[0].domain}</div>
+                        <h2>${campaign[0].title}</h2>
                     </div>
                 </div>
             `;
@@ -26,5 +26,5 @@
                 container.remove();
             };
         })
-        .catch(error => console.error('Error fetching template:', error));
+        .catch(error => console.error('Error fetching campaign:', error));
 })();

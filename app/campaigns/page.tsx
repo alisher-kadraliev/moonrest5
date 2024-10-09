@@ -54,10 +54,12 @@ import {
     TooltipProvider
 } from "@/components/ui/tooltip"
 import TableBodyItems from "./_table/table-body-items"
+import prisma from "@/lib/PrismaConnect"
 
 
 
-const CompaingsPage = () => {
+const CompaingsPage = async () => {
+    const campaigns = await prisma.campaign.findMany();
     return (
         <div className="flex min-h-screen w-full flex-col bg-muted/40">
             <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -219,7 +221,7 @@ const CompaingsPage = () => {
                         <TabsContent value="all">
                             <Card x-chunk="dashboard-06-chunk-0">
                                 <CardHeader>
-                                    <CardTitle>Kampanyalar</CardTitle>
+                                    <CardTitle>Kampanyalar ({campaigns.length})</CardTitle>
                                     <CardDescription>
                                         Kampanyalarınızı buradan yönetebilirsiniz.
                                     </CardDescription>
@@ -230,6 +232,7 @@ const CompaingsPage = () => {
                                             <TableRow>
                                              
                                                 <TableHead>Kampanya</TableHead>
+                                                <TableHead>Domain</TableHead>
                                                 <TableHead className="hidden md:table-cell">
                                                     Durum
                                                 </TableHead>
