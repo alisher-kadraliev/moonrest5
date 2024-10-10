@@ -67,3 +67,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+iframe#popup-root{
+  display: none!important;
+}

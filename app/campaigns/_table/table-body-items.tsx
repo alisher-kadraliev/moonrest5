@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal } from "lucide-react"
 import prisma from "@/lib/PrismaConnect"
+import Link from "next/link"
 const TableBodyItems = async () => {
     const campaigns = await prisma.campaign.findMany();
     const domains = await prisma.domain.findMany();
@@ -17,9 +18,13 @@ const TableBodyItems = async () => {
         <>
             {campaigns.map((item, index) => (
                 <TableRow key={index}>
+
                     <TableCell className="font-medium">
-                        {item.title}
+                        <Link href={`/campaigns/${item.id}`} className="hover:underline cursor-pointer hover:text-orange-500">
+                            {item.title}
+                        </Link>
                     </TableCell>
+
                     <TableCell className="font-medium">
                         {domains.find(domain => domain.id === item.domainId)?.domain}
                     </TableCell>
@@ -48,7 +53,7 @@ const TableBodyItems = async () => {
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </TableCell>
-                </TableRow>
+                </TableRow >
             ))}
         </>
     )
