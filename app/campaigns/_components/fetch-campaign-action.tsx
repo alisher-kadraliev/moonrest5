@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
+export const dynamic = 'force-dynamic'; // Add this line to force dynamic rendering
 
 const FetchCampaignAction = () => {
     const [inputValue, setInputValue] = useState('')
@@ -25,7 +26,6 @@ const FetchCampaignAction = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(inputValue)
         const response = await fetch('/api/templateapi/updateCss', {
             method: 'POST',
             headers: {
