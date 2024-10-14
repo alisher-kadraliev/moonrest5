@@ -1,7 +1,6 @@
 import {
     Bird, Rabbit,
-    Settings, Share,
-    SquareTerminal, Triangle,
+    Settings, SquareTerminal, Triangle,
     Turtle
 } from "lucide-react"
 
@@ -33,6 +32,8 @@ import {
 import CampaignPlayground from "../_components/campaign-playground"
 import CampaignPlaygroundBG from "../_components/campaign-playground-bg"
 import FetchCampaignAction from "../_components/fetch-campaign-action"
+import UpdateCampaignAction from "../_components/update-campaign-action"
+import SaveCampaignAction from "../_components/save-campaign-action"
 
 const CompaingsPageDetail = () => {
     return (
@@ -45,24 +46,24 @@ const CompaingsPageDetail = () => {
                 </div>
                 <nav className="grid gap-1 p-2">
                     <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="rounded-lg bg-muted"
-                                aria-label="Playground"
-                            >
-                                <SquareTerminal className="size-5" />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="right" sideOffset={5}>
-                            Kod
-                        </TooltipContent>
-                    </Tooltip>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="rounded-lg bg-muted"
+                                    aria-label="Playground"
+                                >
+                                    <SquareTerminal className="size-5" />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent side="right" sideOffset={5}>
+                                Kod
+                            </TooltipContent>
+                        </Tooltip>
                     </TooltipProvider>
                 </nav>
-              
+
             </aside>
             <div className="flex flex-col">
                 <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
@@ -186,45 +187,26 @@ const CompaingsPageDetail = () => {
                             </form>
                         </DrawerContent>
                     </Drawer>
-                    <Button
-                        variant="default"
-                        size="sm"
-                        className="ml-auto gap-1.5 text-sm"
-                    >
-                        <Share className="size-3.5" />
-                        Kaydet ve Kapat
-                    </Button>
+                    <SaveCampaignAction />
+                  
                 </header>
                 <main className="flex-1 gap-4 overflow-auto p-4 flex">
                     <div
                         className="relative w-1/5 hidden flex-col items-start gap-8 md:flex" x-chunk="dashboard-03-chunk-0"
                     >
-                        <form className="grid w-full items-start gap-6">
-                            <fieldset className="grid gap-6 rounded-lg border p-4">
-                                <legend className="-ml-1 px-1 text-sm font-medium">
+                        <div className="grid w-full items-start gap-6">
+                            <div className="grid gap-6 rounded-lg border p-4">
+                                <div className="-ml-1 px-1 text-sm font-medium">
                                     Ayarlar
-                                </legend>
-                                <div className="grid gap-3">
-                                    <Label htmlFor="model">Model</Label>
-                                <FetchCampaignAction/>
                                 </div>
                                 <div className="grid gap-3">
-                                    <Label htmlFor="temperature">Temperature</Label>
-                                    <Input id="temperature" type="number" placeholder="0.4" />
+                                    <FetchCampaignAction />
+                                    <UpdateCampaignAction />
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="top-p">Top P</Label>
-                                        <Input id="top-p" type="number" placeholder="0.7" />
-                                    </div>
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="top-k">Top K</Label>
-                                        <Input id="top-k" type="number" placeholder="0.0" />
-                                    </div>
-                                </div>
-                            </fieldset>
-                           
-                        </form>
+
+                            </div>
+
+                        </div>
                     </div>
                     <div className="relative bg-muted/70 w-3/5">
                         <div className="p-10 h-full min-h-[50vh] overflow-hidden">
@@ -241,80 +223,10 @@ const CompaingsPageDetail = () => {
                                     Ayarlar
                                 </legend>
                                 <div className="grid gap-3">
-                                    <Label htmlFor="model">Model</Label>
-                                    <Select>
-                                        <SelectTrigger
-                                            id="model"
-                                            className="items-start [&_[data-description]]:hidden"
-                                        >
-                                            <SelectValue placeholder="Select a model" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="genesis">
-                                                <div className="flex items-start gap-3 text-muted-foreground">
-                                                    <Rabbit className="size-5" />
-                                                    <div className="grid gap-0.5">
-                                                        <p>
-                                                            Neural{" "}
-                                                            <span className="font-medium text-foreground">
-                                                                Genesis
-                                                            </span>
-                                                        </p>
-                                                        <p className="text-xs" data-description>
-                                                            Our fastest model for general use cases.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </SelectItem>
-                                            <SelectItem value="explorer">
-                                                <div className="flex items-start gap-3 text-muted-foreground">
-                                                    <Bird className="size-5" />
-                                                    <div className="grid gap-0.5">
-                                                        <p>
-                                                            Neural{" "}
-                                                            <span className="font-medium text-foreground">
-                                                                Explorer
-                                                            </span>
-                                                        </p>
-                                                        <p className="text-xs" data-description>
-                                                            Performance and speed for efficiency.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </SelectItem>
-                                            <SelectItem value="quantum">
-                                                <div className="flex items-start gap-3 text-muted-foreground">
-                                                    <Turtle className="size-5" />
-                                                    <div className="grid gap-0.5">
-                                                        <p>
-                                                            Neural{" "}
-                                                            <span className="font-medium text-foreground">
-                                                                Quantum
-                                                            </span>
-                                                        </p>
-                                                        <p className="text-xs" data-description>
-                                                            The most powerful model for complex computations.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div className="grid gap-3">
                                     <Label htmlFor="temperature">Temperature</Label>
                                     <Input id="temperature" type="number" placeholder="0.4" />
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="top-p">Top P</Label>
-                                        <Input id="top-p" type="number" placeholder="0.7" />
-                                    </div>
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="top-k">Top K</Label>
-                                        <Input id="top-k" type="number" placeholder="0.0" />
-                                    </div>
-                                </div>
+
                             </fieldset>
 
                         </form>

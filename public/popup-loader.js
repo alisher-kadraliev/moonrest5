@@ -5,7 +5,6 @@
         .then(css => {
             // Create a <style> element
             const style = document.createElement("style");
-            style.type = "text/css";
             style.appendChild(document.createTextNode(css));
             // Append the <style> element to the <head>
             document.head.appendChild(style);
