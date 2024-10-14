@@ -32,8 +32,6 @@ import {
 import CampaignPlayground from "../_components/campaign-playground"
 import CampaignPlaygroundBG from "../_components/campaign-playground-bg"
 import FetchCampaignAction from "../_components/fetch-campaign-action"
-import UpdateCampaignAction from "../_components/update-campaign-action"
-import SaveCampaignAction from "../_components/save-campaign-action"
 
 const CompaingsPageDetail = () => {
     return (
@@ -187,7 +185,6 @@ const CompaingsPageDetail = () => {
                             </form>
                         </DrawerContent>
                     </Drawer>
-                    <SaveCampaignAction />
                   
                 </header>
                 <main className="flex-1 gap-4 overflow-auto p-4 flex">
@@ -201,7 +198,6 @@ const CompaingsPageDetail = () => {
                                 </div>
                                 <div className="grid gap-3">
                                     <FetchCampaignAction />
-                                    <UpdateCampaignAction />
                                 </div>
 
                             </div>

@@ -1,10 +1,8 @@
 "use client"
-import { useGlobalState } from '@/app/_global_states/GlobalStateContext'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const FetchCampaignAction = () => {
-    const globalState = useGlobalState()
-    const { inputValue, setInputValue } = globalState || { inputValue: '', setInputValue: () => { } }
+    const [inputValue, setInputValue] = useState('')
 
     useEffect(() => {
         const fetchCampaignAction = async () => {
@@ -16,26 +14,45 @@ const FetchCampaignAction = () => {
                 const data = await response.text()
                 console.log('Fetched data:', data) // Log the fetched data
                 const inputValue = data.match(/\.popup-custom\s*{\s*padding:\s*(\d+)px\s*}/)?.[1] || ''
-                console.log('Extracted input value:', inputValue) 
-                setInputValue(inputValue) 
+                console.log('Extracted input value:', inputValue)
+                setInputValue(inputValue)
             } catch (error) {
-                console.error('Error fetching campaign action:', error) 
+                console.error('Error fetching campaign action:', error)
             }
         }
         fetchCampaignAction()
-    }, [setInputValue]) 
+    }, [setInputValue])
 
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log(inputValue)
+        const response = await fetch('/api/templateapi/updateCss', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ inputValue: `.popup-custom{padding:${inputValue}px}` }),
+        })
+        if (response.ok) {
+            console.log('CSS updated successfully')
+        }
+    }
 
     return (
         <div>
-            <label htmlFor="paddingValue" className='block mb-2'>Modal Padding (px):</label>
-            <input
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="paddingValue" className='block mb-2'>Modal Padding (px):</label>
+                <input
                 type="number"
                 id="paddingValue"
                 value={inputValue}
                 onChange={e => setInputValue(e.target.value)}
-                className='w-full border border-gray-300 rounded-md p-2'
-            />
+                    className='w-full border border-gray-300 rounded-md p-2'
+                />
+                <button type='submit'>Save</button>
+            </form>
+
+
         </div>
     )
 }
