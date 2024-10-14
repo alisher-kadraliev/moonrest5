@@ -22,34 +22,33 @@ const FetchCampaignAction = () => {
         }
         fetchCampaignAction()
     }, [setInputValue])
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const response = await fetch('/api/templateapi/updateCss', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ inputValue: `.popup-custom{padding:${inputValue}px}` }),
-        })
-        if (response.ok) {
-            console.log('CSS updated successfully')
+    const handleSubmit = async () => { // Move handleSubmit here
+        try {
+            const response = await fetch('/api/templateapi/updateCss', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ inputValue }),
+            })
+            if (response.ok) {
+                console.log('CSS updated successfully')
+            }
+        } catch (error) {
+            console.error('Error updating CSS:', error)
         }
     }
+  
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="paddingValue" className='block mb-2'>Modal Padding (px):</label>
                 <input
-                type="number"
-                id="paddingValue"
+                type="text"
                 value={inputValue}
                 onChange={e => setInputValue(e.target.value)}
                     className='w-full border border-gray-300 rounded-md p-2'
                 />
-                <button type='submit'>Save</button>
-            </form>
+            <button onClick={handleSubmit} type='submit'>Save</button>
 
 
         </div>

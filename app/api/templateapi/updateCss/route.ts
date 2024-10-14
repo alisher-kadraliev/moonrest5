@@ -14,12 +14,12 @@ export async function POST(request: Request) {
             },
             data: {
                 bgColor: inputValue, // Adjust this according to your database schema
-                title: '', // Add required properties
-                description: '', // Add required properties
-                imageUrl: '', // Add required properties
-                buttonText: '', // Add required properties
-                buttonUrl: '', // Add required properties
-                textColor: '', // Add required properties
+                title: 'a', // Add required properties
+                description: 'a', // Add required properties
+                imageUrl: 'a', // Add required properties
+                buttonText: 'a', // Add required properties
+                buttonUrl: 'a', // Add required properties
+                textColor: 'a', // Add required properties
                 type: 'MODAL', // Add required properties
                 campaignId: '67063ebbfcac59965c15c496',
 
