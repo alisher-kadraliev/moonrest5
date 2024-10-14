@@ -17,7 +17,7 @@ const SaveCampaignAction = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ inputValue }),
+                body: JSON.stringify({ inputValue:`.popup-custom{padding:${inputValue}px}` }),
             });
 
             if (response.ok) {

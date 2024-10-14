@@ -15,14 +15,15 @@ const FetchCampaignAction = () => {
                 }
                 const data = await response.text()
                 console.log('Fetched data:', data) // Log the fetched data
-/*                 const inputValue = data.match(/\.popup-custom\s*{\s*padding:\s*(\d+)px\s*}/)?.[1] || ''
- */                setInputValue(data)
+                const inputValue = data.match(/\.popup-custom\s*{\s*padding:\s*(\d+)px\s*}/)?.[1] || '' // Updated regex to match the correct format
+                console.log('Extracted input value:', inputValue) // Log the extracted input value
+                setInputValue(inputValue) // Set the extracted value to inputValue
             } catch (error) {
                 console.error('Error fetching campaign action:', error) // Log any errors
             }
         }
         fetchCampaignAction()
-    }, [setInputValue])
+    }, [setInputValue]) // Added setInputValue to the dependency array
 
 
     return (
