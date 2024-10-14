@@ -68,15 +68,9 @@
             .catch(error => console.error('Error fetching campaign:', error));
     };
 
-    // Fetch and apply CSS
-    fetchAndApplyCSS();
 
-    // Fetch and display campaign data
-    fetchAndDisplayCampaign();
-
-    // Optionally, you can set an interval to refetch the CSS and campaign data periodically
-    // setInterval(() => {
-    //     fetchAndApplyCSS();
-    //     fetchAndDisplayCampaign();
-    // }, 30000); // Every 30 seconds
+    setInterval(() => {
+        fetchAndApplyCSS();
+        fetchAndDisplayCampaign();
+    }, 30000); // Every 30 seconds
 })();
