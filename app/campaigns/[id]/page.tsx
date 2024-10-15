@@ -1,14 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react"
-
+export const dynamic = 'force-dynamic'
 const CampaignsPageDetail = () => {
     const [title, setTitle] = useState('')
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/templateapi/reciev')
+                const response = await fetch('https://moonrest5.vercel.app/api/templateapi/reciev')
                 if (!response.ok) throw new Error('Failed to fetch')
                 const data = await response.json()
                 setTitle(data[0]?.title || '')
@@ -22,7 +22,7 @@ const CampaignsPageDetail = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await fetch('/api/templateapi/updateme', {
+            const response = await fetch('https://moonrest5.vercel.app/api/templateapi/updateme', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
